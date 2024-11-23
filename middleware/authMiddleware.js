@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const adminEmails = ["braveizumie@outlook.com"]; // Add your admin emails
+const adminEmails = ["braveizumie@outlook.com"]; // Add your admin emails here
 
 const authenticateUser = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
