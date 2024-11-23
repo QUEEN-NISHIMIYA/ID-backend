@@ -2,10 +2,10 @@
   "name": "izumie",
   "version": "1.0.0",
   "description": "IZUMIE ID verification system",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
