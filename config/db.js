@@ -1,16 +1,19 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
-const connectDB = async () => {
+
+const connectDatabases = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("MongoDB connected...");
+    await mongoose.connect(process.env.MONGO_URI_AUTH, { ...options });
+    console.log("Auth DB connected");
+
+    const kycConnection = mongoose.createConnection(process.env.MONGO_URI_KYC, { ...options });
+    const izumieIDConnection = mongoose.createConnection(process.env.MONGO_URI_ID, { ...options });
+
+    module.exports.kycDB = kycConnection;
+    module.exports.izumieIDDB = izumieIDConnection;
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error.message);
+    console.error("Database connection error:", error);
     process.exit(1);
   }
 };
-module.exports = connectDB;
+
+module.exports = connectDatabases;
