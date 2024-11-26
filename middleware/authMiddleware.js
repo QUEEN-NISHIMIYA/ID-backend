@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const adminEmails = ["braveizumie@outlook.com"];
+const adminEmails = process.env.ADMIN_EMAILS.split(",");
 const authenticateUser = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
