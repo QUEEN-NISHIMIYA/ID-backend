@@ -1,19 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-dotenv.config();
-connectDB();
-const app = express();
-app.use(express.json());
-app.use(cors({
-  origin: ["https://izumie.rf.gd"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+const { connectDB } = require("./config/db");
+const { sequelize } = require("./config/db");
 const authRoutes = require("./routes/auth");
 const kycRoutes = require("./routes/kyc");
 const userRoutes = require("./routes/user");
+dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(cors());
+connectDB();
+sequelize.sync({ alter: true })
+  .then(() => console.log("Models synchronized successfully."))
+  .catch(err => console.error("Error synchronizing models:", err));
 app.use("/api/auth", authRoutes);
 app.use("/api/kyc", kycRoutes);
 app.use("/api/user", userRoutes);
