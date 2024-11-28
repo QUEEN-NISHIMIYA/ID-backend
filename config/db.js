@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
 
-const connectDatabases = async () => {
+const sequelize = new Sequelize(process.env.PG_URI, {
+  dialect: "postgres",
+  logging: false, // Disable logging for production
+});
+
+const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI_AUTH, { ...options });
-    console.log("Auth DB connected");
-
-    const kycConnection = mongoose.createConnection(process.env.MONGO_URI_KYC, { ...options });
-    const izumieIDConnection = mongoose.createConnection(process.env.MONGO_URI_ID, { ...options });
-
-    module.exports.kycDB = kycConnection;
-    module.exports.izumieIDDB = izumieIDConnection;
+    await sequelize.authenticate();
+    console.log("PostgreSQL connected...");
   } catch (error) {
-    console.error("Database connection error:", error);
+    console.error("Error connecting to PostgreSQL:", error.message);
     process.exit(1);
   }
 };
 
-module.exports = connectDatabases;
+module.exports = { sequelize, connectDB };
