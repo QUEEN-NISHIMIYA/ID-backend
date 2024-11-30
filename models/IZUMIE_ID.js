@@ -1,9 +1,10 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../config/db");
 
-const izumieIDSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  izumieID: { type: String, unique: true, required: true },
-  issuedAt: { type: Date, default: Date.now },
+const IZUMIE_ID = sequelize.define("IZUMIE_ID", {
+  userId: { type: DataTypes.INTEGER, allowNull: false },
+  izumieID: { type: DataTypes.STRING, unique: true, allowNull: false },
+  issuedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
 
-module.exports = mongoose.model("IZUMIE_ID", izumieIDSchema);
+module.exports = IZUMIE_ID;
