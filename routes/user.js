@@ -74,7 +74,7 @@ router.get('/admin-access', authenticateToken, (req, res) => {
 // Admin QR Code
 router.get('/admin-qr', async (req, res) => {
   try {
-    const qrCode = await QRCode.toDataURL('https://izumie.rf.gd/admin-dashboard');
+    const qrCode = await QRCode.toDataURL('https://izumie.rf.gd/admin-dashboard.html');
     res.json({ qrCode });
   } catch (error) {
     res.status(500).json({ error: 'Error generating QR code for admin' });
