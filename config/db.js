@@ -1,11 +1,9 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
-
 const sequelize = new Sequelize(process.env.PG_URI, {
   dialect: "postgres",
-  logging: false, // Disable logging for production
+  logging: false,
 });
-
 const connectDB = async () => {
   try {
     await sequelize.authenticate();
@@ -15,5 +13,4 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
 module.exports = { sequelize, connectDB };
