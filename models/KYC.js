@@ -1,11 +1,10 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../config/db");
+const mongoose = require("mongoose");
 
-const KYC = sequelize.define("KYC", {
-  userId: { type: DataTypes.INTEGER, allowNull: false },
-  kycDocuments: { type: DataTypes.JSONB },
-  kycCountry: { type: DataTypes.STRING },
-  kycIdentityID: { type: DataTypes.STRING, unique: true },
+const kycSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  kycDocuments: { type: Object, required: true },
+  kycCountry: { type: String, required: true },
+  kycIdentityID: { type: String, unique: true },
 });
 
-module.exports = KYC;
+module.exports = mongoose.model("KYC", kycSchema);
