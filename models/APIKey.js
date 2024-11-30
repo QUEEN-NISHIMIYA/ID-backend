@@ -1,9 +1,25 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../config/db");
 
-const apiKeySchema = new mongoose.Schema({
-  applicationName: { type: String, required: true },
-  apiKey: { type: String, required: true, unique: true },
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to User
+const APIKey = sequelize.define("APIKey", {
+  applicationName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  apiKey: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  createdBy: {
+    type: DataTypes.INTEGER, // Assuming User has an integer primary key
+    references: {
+      model: "Users", // Table name for users
+      key: "id",
+    },
+  },
+}, {
+  timestamps: true,
 });
 
-module.exports = mongoose.model("APIKey", apiKeySchema);
+module.exports = APIKey;
