@@ -9,5 +9,17 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.3.4",
+    "nodemailer": "^6.9.4",
+    "qrcode": "^1.5.1",
+    "speakeasy": "^2.0.0",
+    "uuid": "^9.0.1"
+  }
 }
