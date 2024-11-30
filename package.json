@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "install": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -14,7 +15,11 @@
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.5.2"
   },
+  "engines": {
+    "node": "20.x",
+    "npm": ">=7.x"
+  },
   "keywords": ["backend", "authentication", "ID verification"],
-  "author": "Izumie",
+  "author": "Your Name or Organization",
   "license": "MIT"
 }
