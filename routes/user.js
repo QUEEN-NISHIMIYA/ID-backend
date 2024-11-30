@@ -7,7 +7,7 @@ const router = express.Router();
 // Generate QR Code
 router.get('/generate-qr', async (req, res) => {
   try {
-    const qrCode = await QRCode.toDataURL('https://izumie.rf.gd/terms-and-conditions');
+    const qrCode = await QRCode.toDataURL('https://izumie.rf.gd/terms-and-conditions.html');
     res.json({ qrCode });
   } catch (error) {
     res.status(500).json({ error: 'Error generating QR code' });
