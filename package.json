@@ -1,7 +1,7 @@
 {
   "name": "id-backend",
   "version": "1.0.0",
-  "description": "ɪɀꪊmíꫀ",
+  "description": "Authentication and backend service for ɪɀꪊmíꫀ.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -14,7 +14,7 @@
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.5.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": ["backend", "authentication", "ID verification"],
+  "author": "Izumie",
+  "license": "MIT"
 }
