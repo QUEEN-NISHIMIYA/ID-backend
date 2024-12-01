@@ -29,7 +29,9 @@ function authenticateUser(req, res, next) {
 router.get('/verify-token', authenticateUser, (req, res) => {
   res.status(200).json({ message: 'Authenticated' });
 });
-
+router.get("/test", (req, res) => {
+  res.json({ message: "Auth routes are working" });
+});
 router.post('/send-verification', async (req, res) => {
   const { email } = req.body;
   const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
