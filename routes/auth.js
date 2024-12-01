@@ -36,15 +36,15 @@ router.post('/send-verification', async (req, res) => {
   verificationCodes[email] = verificationCode;
 
   const transporter = nodemailer.createTransport({
-    service: 'Outlook365',
+    service: 'gmail',
     auth: {
-      user: process.env.OUTLOOK_EMAIL,
-      pass: process.env.OUTLOOK_PASSWORD,
+      user: process.env.GMAIL_EMAIL,
+      pass: process.env.GMAIL_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: process.env.OUTLOOK_EMAIL,
+    from: process.env.GMAIL_EMAIL,
     to: email,
     subject: 'IZUMIE Verification Code',
     text: `Your verification code is ${verificationCode}. Do not share this code with anyone.`,
