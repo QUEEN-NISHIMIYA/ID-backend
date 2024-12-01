@@ -32,27 +32,19 @@ router.get('/verify-token', authenticateUser, (req, res) => {
 router.get("/test", (req, res) => {
   res.json({ message: "Auth routes are working" });
 });
-router.post("/send-verification", async (req, res) => {
-  console.log("Request received:", req.body); // Log incoming request
 
+router.post('/send-verification', async (req, res) => {
   const { email } = req.body;
-  if (!email) {
-    return res.status(400).json({ error: "Email is required" });
-  }
-
-  console.log("Generating verification code...");
   const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
   verificationCodes[email] = verificationCode;
 
-  console.log("Creating mail transporter...");
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: 'gmail',
     auth: {
       user: process.env.GMAIL_EMAIL,
       pass: process.env.GMAIL_PASSWORD,
     },
   });
-
   console.log("Setting mail options...");
   const mailOptions = {
     from: process.env.GMAIL_EMAIL,
